@@ -7,11 +7,11 @@
 // argv = arguments
 // slice is removing the parts of an array that is not needed, 
 // the before and after parts of the needed items of an array
+var fs = require('fs');
 
+var profileDataArgs = process.argv.slice(2);
 
-var profileDataArgs = process.argv.slice(2, process.argv.length);
-
-const [name, github] = profileDataArgs
+const [name, github] = profileDataArgs;
 
 const generatePage = (userName, githubName) => {
     return `
@@ -32,29 +32,4 @@ const generatePage = (userName, githubName) => {
         `;
   };
 
-  console.log(name, github);
-  console.log(generatePage(name, github));
-
-var fs = require('fs');
-
-fs.writeFileSync('index.html', generatePage);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const generatePage = (userName, githubName) => `name: ${userName}, GitHub: ${githubName}`;
-
-// console.log(generatePage(`Christian Casillas`, `Casres` ));
+fs.writeFile('index.html', generatePage(), error => error ? console.log('error has happened') : console.log('Portfolio complete! Go to index.html to see the work!'));
