@@ -33,18 +33,25 @@ const promptUser = () => {
         }
       },
       {
-        type: 'input',
-        name: 'about',
-        message: 'Provide some information about yourself *:',
-        validate: nameInput => {
-            if (nameInput) {
-                return true 
-            } else {
-                console.log("Tell us about your self");
-                return false
-            }
-        }
+        type: 'confirm',
+        name: 'confirmAbout',
+        message: 'Would you like to provide some information about yourself *:',
+        default: true
+      },
+
+      {
+          type: 'input',
+          name: 'about',
+          message: 'What would you like the world to know?',
+          when: ({confirmAbout}) => {
+              if (confirmAbout) {
+                  return true;
+              } else {
+                  return false;
+              }
+          }
       }
+
     ]);
   };
 
