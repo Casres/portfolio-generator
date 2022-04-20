@@ -3,7 +3,28 @@
 
 const inquirer = require('inquirer');
 
-const promptUser = portfolioData => {
+
+const promptUser = () => {
+    return inquirer.prompt([
+      {
+        type: 'input',
+        name: 'name',
+        message: 'What is your name?'
+      },
+      {
+        type: 'input',
+        name: 'github',
+        message: 'Enter your GitHub Username'
+      },
+      {
+        type: 'input',
+        name: 'about',
+        message: 'Provide some information about yourself:'
+      }
+    ]);
+  };
+
+const promptProject = portfolioData => {
 
     if (!portfolioData.projects) {
         portfolioData.projects = [];
@@ -62,9 +83,10 @@ const promptUser = portfolioData => {
 }
 
 promptUser()
-  .then(answers => console.log(answers))
-//   .then(promptProject)
-//   .then(projectAnswers => console.log(projectAnswers));
+  .then(promptProject)
+  .then(portfolioData => {
+    console.log(portfolioData);
+  });
 
 // var fs = require('fs');
 // const generatePage = require('./src/page-template');
