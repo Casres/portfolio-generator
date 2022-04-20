@@ -9,17 +9,41 @@ const promptUser = () => {
       {
         type: 'input',
         name: 'name',
-        message: 'What is your name?'
+        message: 'What is your name?',
+        validate: nameInput => {
+            if (nameInput) {
+                return true 
+            } else {
+                console.log("Please write your name");
+                return false
+            }
+        }
       },
       {
         type: 'input',
         name: 'github',
-        message: 'Enter your GitHub Username'
+        message: 'Enter your GitHub Username', 
+        validate: nameInput => {
+            if (nameInput) {
+                return true 
+            } else {
+                console.log("Please write your GitHub name");
+                return false
+            }
+        }
       },
       {
         type: 'input',
         name: 'about',
-        message: 'Provide some information about yourself:'
+        message: 'Provide some information about yourself:',
+        validate: nameInput => {
+            if (nameInput) {
+                return true 
+            } else {
+                console.log("Tell us about your self");
+                return false
+            }
+        }
       }
     ]);
   };
@@ -41,12 +65,28 @@ const promptProject = portfolioData => {
         {
             type: 'input', 
             name: 'name',
-            message: 'What is the name of your project?'
+            message: 'What is the name of your project?',
+            validate: nameInput => {
+                if (nameInput) {
+                    return true 
+                } else {
+                    console.log("Please write the project name");
+                    return false
+                }
+            }
         },  
         {
             type: 'input', 
             name: 'description',
-            message: 'Provide a description of your project (required)'
+            message: 'Provide a description of your project (required)',
+            validate: nameInput => {
+                if (nameInput) {
+                    return true 
+                } else {
+                    console.log("Please write a description of the project");
+                    return false
+                }
+            }
         },
         {
             type: 'checkbox', 
@@ -57,7 +97,15 @@ const promptProject = portfolioData => {
         {
             type: 'input', 
             name: 'link',
-            message: 'GitHub project link (Required?'
+            message: 'GitHub project link (Required)',
+            validate: nameInput => {
+                if (nameInput) {
+                    return true 
+                } else {
+                    console.log("Please write the projects link from GitHub"); 
+                    return false
+                }
+            }
         },  
         {
             type: 'confirm', 
@@ -88,15 +136,3 @@ promptUser()
     console.log(portfolioData);
   });
 
-// var fs = require('fs');
-// const generatePage = require('./src/page-template');
-
-// // input of the user from the command line
-
-// // putting user command line inputs into variable names 'name' , 'github'
-
-// // putting the user inputs that are now rep by variables into the generate page var who's value is an html with inputs that are waiting to be populated 
-// const pageHTML = generatePage(name, github);
-
-// // puts it all together by writing a file and then plugging in the information for that file and then putting a call back function for errors
-// fs.writeFile('index.html', pageHTML, error => error ? console.log('error has happened') : console.log('Portfolio complete! Go to index.html to see the work!'));
