@@ -1,6 +1,7 @@
 
 
-
+const fs = require('fs');
+const generatePage = require('./src/page-template');
 const inquirer = require('inquirer');
 
 
@@ -140,6 +141,11 @@ const promptProject = portfolioData => {
 promptUser()
   .then(promptProject)
   .then(portfolioData => {
-    console.log(portfolioData);
-  });
+    const pageHTML = generatePage(portfolioData);
 
+    fs.writeFileSync('index.html', pageHTML, err => {
+        if(err) throw new Error(err);
+        console.log('Page created! Checkout index.html to check it out');
+    })
+  });
+  
