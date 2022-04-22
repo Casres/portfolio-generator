@@ -4,7 +4,7 @@
 
 const inquirer = require('inquirer');
 const generatePage = require('./src/page-template');
-const { writeFile, copyFile } = require('./utils/generate-site');
+const { writeFile, copyFile } = require('./utils/generate-site.js');
 
 const promptUser = () => {
   return inquirer.prompt([
@@ -136,6 +136,7 @@ promptUser()
     return generatePage(portfolioData);
   })
   .then(pageHTML => {
+      console.log(pageHTML, 'look it here!');
     return writeFile(pageHTML);
   })
   .then(writeFileResponse => {
