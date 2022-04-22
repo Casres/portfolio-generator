@@ -54,7 +54,7 @@ const promptUser = () => {
       }
 
     ]);
-  };
+};
 
 const promptProject = portfolioData => {
 
@@ -136,16 +136,23 @@ const promptProject = portfolioData => {
             return portfolioData;
         }
     });
-}
+};
 
 promptUser()
   .then(promptProject)
   .then(portfolioData => {
-    const pageHTML = generatePage(portfolioData);
-
-    fs.writeFileSync('index.html', pageHTML, err => {
-        if(err) throw new Error(err);
-        console.log('Page created! Checkout index.html to check it out');
-    })
+      return generatePage(portfolioData);
+  })
+  .then(pageHTML => {
+      return fs.writeFile(pageHTML);
+  })
+  .then(writeFileResponse => {
+      console.log(writeFileResponse);
+      return fs.copyFile();
+  })
+  .then(copyFileResponse => {
+      console.log(copyFileResponse);
+  })
+  .catch(err => {
+      console.log(err);
   });
-  
